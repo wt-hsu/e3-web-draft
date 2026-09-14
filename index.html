@@ -1132,7 +1132,11 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
   font-family:var(--e3-mono);text-transform:uppercase;
 }
 .e3-eyebrow{font-size:13.5px;font-weight:500;letter-spacing:.13em;color:#C8D8E7}
-.e3-eyebrow-strong{font-size:16px;font-weight:600;letter-spacing:.18em;color:#E1EAF2}
+.e3-eyebrow-strong{font-size:16px;font-weight:500;letter-spacing:.18em;color:#E1EAF2}
+/* the three E of E3. IBM Plex Mono is loaded at 400/500/600 and the design
+   system caps at 600, so the E cannot go heavier than the line already was.
+   The emphasis comes from the rest of the line easing back to 500 instead. */
+.e3-eyebrow-strong .e3-e{font-weight:600;color:#fff}
 
 /* Hero video crop.
    The clip is 16:9 and the hero is close to it, so at width:100% there is no
@@ -1227,7 +1231,7 @@ h2{color:#204666}
 <div style="max-width:1080px;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:38px">
 <div class="e3-eyebrows">
 <span class="e3-eyebrow">NTU E3 Research Center</span>
-<span class="e3-eyebrow-strong">Energy × Economics × Environment</span>
+<span class="e3-eyebrow-strong"><b class="e3-e">E</b>nergy × <b class="e3-e">E</b>conomics × <b class="e3-e">E</b>nvironment</span>
 </div>
 <h1 class="e3-h1" style="font-size:72px;line-height:1.12;letter-spacing:-.02em;font-weight:600;max-width:1000px;color:#fff;margin:8px 0">Powering better decisions<br>for {{ rotator }}</h1>
 <div style="display:flex;gap:14px;flex-wrap:wrap">

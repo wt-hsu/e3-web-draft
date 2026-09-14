@@ -78,6 +78,12 @@ and runs too wide. If you change a size, move the tracking the other way.
 Phones keep the original 11.5px and 14px, because the longer line wraps to
 three lines otherwise.
 
+The three E of "Energy, Economics, Environment" are marked with `.e3-e` to
+show where the centre's name comes from. IBM Plex Mono is loaded at 400, 500
+and 600 only, and the design system caps at 600, which the line already used,
+so the E could not be made heavier. The emphasis comes from the rest of the
+line easing back to 500 while the E holds 600 and lifts to pure white.
+
 ## Buttons and heading colour
 
 Both hero CTAs share one `.e3-btn` rule, so they cannot drift apart. The rule
