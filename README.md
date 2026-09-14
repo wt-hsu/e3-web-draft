@@ -185,9 +185,25 @@ movement at all.
 The title lift uses `transform`, which does not reflow, so the row keeps its
 height and the text below it never moves. Only the title appears to float.
 
+## Adding a photo
+
+The research cards are the worked example. Each card's image is a field in the
+`areas` list in `renderVals()`, not a hard-coded path in the markup:
+
+```js
+img: 'assets/img/research-1-energy-systems.jpg',
+alt: 'Grid-scale battery storage units on a coastal ridge below a wind farm'
+```
+
+So swapping a photo means dropping a file in `assets/img/` and changing one
+string. Export 3:4 upright at 1000x1333 and keep it under 400KB.
+
+Write real `alt` text. It is what a screen reader announces and what shows if
+the file fails to load. Leave it empty only when the image is pure decoration.
+
 ## Known gaps
 
-- Image slots in the research cards and news items are empty.
+- News image slots are still empty; the research cards now carry photos.
 - The fifth publication is a placeholder.
 - Nav and footer links all point at `#`.
 - No mobile navigation; the nav is hidden on narrow screens.

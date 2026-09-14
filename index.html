@@ -82,9 +82,7 @@ window.__resources = {
 <div class="e3-grid3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
 <sc-for list="{{ areas }}" as="a" hint-placeholder-count="3">
 <a href="#" class="e3-reveal e3-rise" style="position:relative;display:block;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:#0E304A;color:#fff">
-<!-- To use a real photo, swap the <image-slot> below for:
-     <img src="assets/img/research-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
-<div style="position:absolute;inset:0"><image-slot id="{{ a.slotB }}" shape="rect" placeholder="{{ a.placeholder }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
+<div class="e3-media" style="position:absolute;inset:0"><img src="{{ a.img }}" alt="{{ a.alt }}" loading="lazy" decoding="async" width="1000" height="1333" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
 <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(2,26,47,.92) 0%,rgba(2,26,47,.55) 40%,rgba(2,26,47,0) 70%);pointer-events:none"></div>
 <div style="position:absolute;left:0;right:0;bottom:0;padding:28px;display:flex;flex-direction:column;pointer-events:none">
 <span style="font-family:var(--e3-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:{{ a.tagDark }};margin-bottom:10px">{{ a.tag }}</span>
@@ -259,9 +257,18 @@ class Component extends DCLogic {
   }
   renderVals() {
     const areas = [
-      { tag: 'Smart Energy Systems', tagBg: '#E1EAF2', tagFg: '#204666', tagDark: '#A9C1D8', title: 'Smart Energy Systems & Grid Resilience', desc: 'How renewable generation is forecast, dispatched, and kept resilient — from a single building to the grid.', placeholder: 'Drop: grid / solar photo', slotA: 'area-1-1a', slotAm: 'area-1-1a-m', slotB: 'area-1-1b', slotBm: 'area-1-1b-m' },
-      { tag: 'Low-Carbon Transport', tagBg: '#E2EBEA', tagFg: '#37615E', tagDark: '#AAC4C2', title: 'Low-Carbon Transport & Supply Chains', desc: 'Cutting carbon where freight moves and fuels are made.', placeholder: 'Drop: freight / port photo', slotA: 'area-2-1a', slotAm: 'area-2-1a-m', slotB: 'area-2-1b', slotBm: 'area-2-1b-m' },
-      { tag: 'Energy Decision-Making', tagBg: '#E8EADB', tagFg: '#5A5E00', tagDark: '#BEC295', title: 'Sustainable Energy Decision-Making', desc: 'Data-driven evaluation of energy-transition strategies — their environmental, economic, and public-health consequences.', placeholder: 'Drop: policy / city photo', slotA: 'area-3-1a', slotAm: 'area-3-1a-m', slotB: 'area-3-1b', slotBm: 'area-3-1b-m' }
+      { tag: 'Smart Energy Systems', tagDark: '#A9C1D8', title: 'Smart Energy Systems & Grid Resilience',
+        desc: 'How renewable generation is forecast, dispatched, and kept resilient — from a single building to the grid.',
+        img: 'assets/img/research-1-energy-systems.jpg',
+        alt: 'Grid-scale battery storage units on a coastal ridge below a wind farm at sunrise' },
+      { tag: 'Low-Carbon Transport', tagDark: '#AAC4C2', title: 'Low-Carbon Transport & Supply Chains',
+        desc: 'Cutting carbon where freight moves and fuels are made.',
+        img: 'assets/img/research-2-transport.jpg',
+        alt: 'A freight lorry crossing a long causeway bridge over open water at dusk' },
+      { tag: 'Energy Decision-Making', tagDark: '#BEC295', title: 'Sustainable Energy Decision-Making',
+        desc: 'Data-driven evaluation of energy-transition strategies — their environmental, economic, and public-health consequences.',
+        img: 'assets/img/research-3-decision-making.jpg',
+        alt: 'A glass panel showing a falling emissions chart, standing on a rock ridge above a valley' }
     ];
     const partners = ['Stanford University', 'UCL', 'NextDrive', 'MIRDC', 'University of Groningen'];
     const newsSmall = [

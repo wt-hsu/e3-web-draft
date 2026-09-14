@@ -375,7 +375,8 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
 .e3-rowlink:hover .e3-float,.e3-rowlink:focus-visible .e3-float{transform:translateY(calc(-1 * var(--e3-float)))}
 .e3-media{overflow:hidden}
 .e3-media>*{transition:transform var(--e3-dur-open) var(--e3-ease)}
-.e3-rowlink:hover .e3-media>*,.e3-rowlink:focus-visible .e3-media>*{transform:scale(1.03)}
+.e3-rowlink:hover .e3-media>*,.e3-rowlink:focus-visible .e3-media>*,
+.e3-reveal:hover .e3-media>*,.e3-reveal:focus-visible .e3-media>*{transform:scale(1.03)}
 
 /* --- a text link ending in an arrow --- */
 .e3-arrowlink{display:inline-flex;align-items:baseline;gap:6px;transition:color var(--e3-dur-tint) var(--e3-ease)}
