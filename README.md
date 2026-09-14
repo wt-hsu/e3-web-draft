@@ -110,6 +110,7 @@ commented block near the top of the stylesheet.
 | `--e3-dur-open` | 320ms | disclosure: reveals, media zoom |
 | `--e3-ease` | `cubic-bezier(.2,0,0,1)` | all of them |
 | `--e3-lift` | 1px | how far a button rises |
+| `--e3-float` | 3px | how far a title lifts |
 | `--e3-slide` | 4px | how far an arrow travels |
 
 The patterns, applied by class:
@@ -119,7 +120,7 @@ The patterns, applied by class:
 | `.e3-btn` | Solid button on a dark ground. Tints, rises 1px, returns on press. |
 | `.e3-btn-solid` | Same motion on a light ground. |
 | `.e3-rowlink` | A whole article row. Wrap any news or publication link in it. |
-| `.e3-ul` | The title inside a row link. Takes an underline that grows from the left. |
+| `.e3-float` | The title inside a row link. Lifts 3px off its baseline. |
 | `.e3-media` | The image frame inside a row link. Eases in to 1.03. |
 | `.e3-arrowlink` | A text link ending in an arrow; the arrow slides right. |
 | `.e3-reveal` | A research card; the description opens. |
@@ -138,9 +139,8 @@ Three rules hold the standard together:
 To add a new hoverable thing, reach for the nearest class. If none fits, build
 it from the tokens rather than inventing a duration or a curve.
 
-The title underline is drawn as a background image rather than a pseudo-element
-so it tracks a title that wraps to several lines, with
-`box-decoration-break: clone` giving each line its own rule.
+The title lift uses `transform`, which does not reflow, so the row keeps its
+height and the text below it never moves. Only the title appears to float.
 
 ## Known gaps
 
