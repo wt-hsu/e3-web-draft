@@ -1122,6 +1122,18 @@ window.__resources = {
 body{margin:0;background:#E5E9ED;font-family:var(--e3-sans);color:#0E1A24;text-wrap:pretty}
 a{color:#204666;text-decoration:none}a:hover{color:#37615E}
 h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
+/* Hero eyebrows. Larger than the 11.5px label step, with the tracking wound
+   back to match: letter-spacing exists to open up small type, so the same em
+   value reads loose once the type grows. The stack gap tightens by the same
+   amount the type gains, so the block keeps its height and the headline
+   stays put. Phones keep the original sizes to avoid a three-line wrap. */
+.e3-eyebrows{display:flex;flex-direction:column;gap:8px}
+.e3-eyebrow,.e3-eyebrow-strong{
+  font-family:var(--e3-mono);text-transform:uppercase;
+}
+.e3-eyebrow{font-size:13.5px;font-weight:500;letter-spacing:.13em;color:#C8D8E7}
+.e3-eyebrow-strong{font-size:16px;font-weight:600;letter-spacing:.18em;color:#E1EAF2}
+
 /* Hero video crop.
    The clip is 16:9 and the hero is close to it, so at width:100% there is no
    horizontal slack and object-position has nothing to slide. Making the video
@@ -1140,9 +1152,11 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
   display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;
   height:48px;padding:0 24px;border:1px solid #fff;border-radius:3px;
   background:#fff;color:#021A2F;font-weight:600;font-size:15px;
-  transition:background .18s ease,border-color .18s ease;
+  transition:background .18s ease,border-color .18s ease,color .18s ease;
 }
-.e3-btn:hover,.e3-btn:focus-visible{background:#E1EAF2;border-color:#E1EAF2;color:#021A2F}
+/* hover lets the footage read through; the label flips to white because
+   navy would not survive a translucent fill over moving video */
+.e3-btn:hover,.e3-btn:focus-visible{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.92);color:#fff}
 @media (prefers-reduced-motion:reduce){.e3-btn{transition:none}}
 /* section headings: blue-800, brighter than the near-black body colour */
 h2{color:#204666}
@@ -1173,7 +1187,7 @@ h2{color:#204666}
 .e3-submenu a{padding:9px 18px;font-size:15px;font-weight:400;color:#364553;white-space:nowrap}
 .e3-submenu a:hover,.e3-submenu a:focus-visible{background:#F3F5F6;color:#204666}
 @media (prefers-reduced-motion:reduce){.e3-submenu,.e3-caret{transition:none!important}}
-@media (max-width:900px){.e3-grid2{grid-template-columns:1fr!important;gap:32px!important}.e3-grid3{grid-template-columns:1fr!important}.e3-pad{padding-left:24px!important;padding-right:24px!important}.e3-nav{display:none!important}.e3-hero{height:560px!important}.e3-h1{font-size:44px!important}.e3-cta{flex-direction:column;align-items:flex-start!important}}
+@media (max-width:900px){.e3-grid2{grid-template-columns:1fr!important;gap:32px!important}.e3-grid3{grid-template-columns:1fr!important}.e3-pad{padding-left:24px!important;padding-right:24px!important}.e3-nav{display:none!important}.e3-hero{height:560px!important}.e3-eyebrow{font-size:11.5px;letter-spacing:.16em}.e3-eyebrow-strong{font-size:14px;letter-spacing:.22em}.e3-h1{font-size:44px!important}.e3-cta{flex-direction:column;align-items:flex-start!important}}
 </style>
 </helmet>
 <div style="width:100%;background:#fff">
@@ -1210,10 +1224,10 @@ h2{color:#204666}
 <source src="assets/media/hero.mp4" type="video/mp4">
 </video>
 <section class="e3-pad" style="position:absolute;inset:0;z-index:1;display:flex;align-items:center;background:radial-gradient(78% 72% at 24% 52%,rgba(2,26,47,.90) 0%,rgba(2,26,47,.70) 42%,rgba(2,26,47,.24) 74%,rgba(2,26,47,0) 100%),linear-gradient(to bottom,rgba(2,26,47,.32) 0%,rgba(2,26,47,.34) 52%,rgba(2,26,47,.80) 82%,#021A2F 100%);color:#fff;padding:0 48px">
-<div style="max-width:1080px;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:40px">
-<div style="display:flex;flex-direction:column;gap:12px">
-<span style="font-family:var(--e3-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#C8D8E7">NTU E3 Research Center</span>
-<span style="font-family:var(--e3-mono);font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#E1EAF2">Energy × Economics × Environment</span>
+<div style="max-width:1080px;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:38px">
+<div class="e3-eyebrows">
+<span class="e3-eyebrow">NTU E3 Research Center</span>
+<span class="e3-eyebrow-strong">Energy × Economics × Environment</span>
 </div>
 <h1 class="e3-h1" style="font-size:72px;line-height:1.12;letter-spacing:-.02em;font-weight:600;max-width:1000px;color:#fff;margin:8px 0">Powering better decisions<br>for {{ rotator }}</h1>
 <div style="display:flex;gap:14px;flex-wrap:wrap">

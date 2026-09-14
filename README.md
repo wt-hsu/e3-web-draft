@@ -64,6 +64,20 @@ keyboard focus as well as hover.
 
 The nav is hidden below 900px wide. There is no mobile menu yet.
 
+## The hero eyebrows
+
+The two small uppercase lines above the headline are `.e3-eyebrow` and
+`.e3-eyebrow-strong` in the stylesheet. They sit above the design system's
+11.5px label step because the hero headline is far larger than a section
+heading, so the label needs more presence to hold its own.
+
+Their tracking is wound back as the size goes up. Letter-spacing exists to
+open up small type; keep the same em value on larger type and it reads loose
+and runs too wide. If you change a size, move the tracking the other way.
+
+Phones keep the original 11.5px and 14px, because the longer line wraps to
+three lines otherwise.
+
 ## Buttons and heading colour
 
 Both hero CTAs share one `.e3-btn` rule, so they cannot drift apart. The rule
@@ -72,6 +86,10 @@ than an unbordered one, because the page has no global box-sizing reset.
 
 Section headings take their colour from a single `h2` rule in the stylesheet
 (blue-800, `#204666`). Change it there rather than per heading.
+
+On hover the buttons drop to a translucent fill so the footage reads through,
+and the label flips from navy to white. That flip is required, not cosmetic:
+navy on the translucent fill measures about 1.9:1, which is unreadable.
 
 ## Known gaps
 
