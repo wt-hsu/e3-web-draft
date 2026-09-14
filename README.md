@@ -97,6 +97,51 @@ On hover the buttons drop to a translucent fill so the footage reads through,
 and the label flips from navy to white. That flip is required, not cosmetic:
 navy on the translucent fill measures about 1.9:1, which is unreadable.
 
+## Hover motion standard
+
+Every element that answers a pointer draws on one set of tokens, so no new
+motion has to be designed per component. The tokens and patterns live in one
+commented block near the top of the stylesheet.
+
+| Token | Value | For |
+| --- | --- | --- |
+| `--e3-dur-tint` | 120ms | colour, border, background |
+| `--e3-dur-move` | 180ms | a control shifting position |
+| `--e3-dur-open` | 320ms | disclosure: reveals, media zoom |
+| `--e3-ease` | `cubic-bezier(.2,0,0,1)` | all of them |
+| `--e3-lift` | 1px | how far a button rises |
+| `--e3-slide` | 4px | how far an arrow travels |
+
+The patterns, applied by class:
+
+| Class | Behaviour |
+| --- | --- |
+| `.e3-btn` | Solid button on a dark ground. Tints, rises 1px, returns on press. |
+| `.e3-btn-solid` | Same motion on a light ground. |
+| `.e3-rowlink` | A whole article row. Wrap any news or publication link in it. |
+| `.e3-ul` | The title inside a row link. Takes an underline that grows from the left. |
+| `.e3-media` | The image frame inside a row link. Eases in to 1.03. |
+| `.e3-arrowlink` | A text link ending in an arrow; the arrow slides right. |
+| `.e3-reveal` | A research card; the description opens. |
+| `.e3-footlink` | Footer link, colour only. |
+
+Three rules hold the standard together:
+
+- **Only transform, opacity and colour animate.** Those are what the browser
+  can carry without re-laying out the page. Animating width, height, top or
+  left stutters on a long page.
+- **Every pattern answers `:focus-visible` as well as `:hover`,** so the
+  keyboard sees what the mouse sees.
+- **Under `prefers-reduced-motion` the movement stops and the colour change
+  stays,** so nothing silently loses its affordance.
+
+To add a new hoverable thing, reach for the nearest class. If none fits, build
+it from the tokens rather than inventing a duration or a curve.
+
+The title underline is drawn as a background image rather than a pseudo-element
+so it tracks a title that wraps to several lines, with
+`box-decoration-break: clone` giving each line its own rule.
+
 ## Known gaps
 
 - Image slots in the research cards and news items are empty.
