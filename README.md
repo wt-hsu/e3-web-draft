@@ -50,6 +50,13 @@ The source video is 1280x720. The 118% crop means it is drawn about 1.33x its
 native width on a 1440px screen, so a 1920x1080 master would look noticeably
 sharper. Cropping harder costs more sharpness.
 
+Both files are compressed for the web: WebM at 1.76MB for browsers that take
+it, MP4 at 2.31MB as the fallback, down from 3.71MB and 8.97MB. The audio
+track is stripped, since the hero is muted, and the MP4 is written with its
+index at the front so playback starts before the file finishes downloading. If
+you replace the video, run it through the same treatment or the page gets slow
+on a phone.
+
 ## Editing the content
 
 All text lives in one place: the `renderVals()` method in the script block at
