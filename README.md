@@ -79,10 +79,18 @@ Phones keep the original 11.5px and 14px, because the longer line wraps to
 three lines otherwise.
 
 The three E of "Energy, Economics, Environment" are marked with `.e3-e` to
-show where the centre's name comes from. IBM Plex Mono is loaded at 400, 500
-and 600 only, and the design system caps at 600, which the line already used,
-so the E could not be made heavier. The emphasis comes from the rest of the
-line easing back to 500 while the E holds 600 and lifts to pure white.
+show where the centre's name comes from.
+
+The letter is already white and already at 600, the heaviest weight loaded for
+IBM Plex Mono and the design system's ceiling, so it cannot be pushed further
+on its own. The separation comes from the other side: the rest of the line
+sits at blue-300 rather than blue-200, which roughly doubles the brightness
+step from the E to its neighbours. Size only has to nudge, one step up the
+ladder from 16px to 17px.
+
+Blue-300 is the dimmest step that still clears WCAG AA over the footage,
+measuring 6.05:1 against the brightest frame. Anything dimmer fails, so treat
+that as the floor if you retune this line.
 
 ## Buttons and heading colour
 
