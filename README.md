@@ -33,7 +33,7 @@ The hero is a wrapper div with a `<video>` inside it, near the top of `<body>`.
 
 | What to change | Where | Notes |
 | --- | --- | --- |
-| Hero height | `height:680px` on the wrapper | The video always fills the wrapper. |
+| Hero height | `height:800px` on the `.e3-hero` wrapper | The video always fills the wrapper. Phones use 560px via the media query. |
 | How the video fills | `object-fit` on the video | `cover` crops to fill, `contain` letterboxes. |
 | Which part is kept | `object-position` on the video | `center`, `left top`, `center 30%`, and so on. |
 | Zoom or nudge | add `transform:scale(1.1)` to the video | Keep `object-fit:cover`. |
@@ -49,8 +49,23 @@ the bottom of `index.html`. Research areas, partners, news items, publications,
 and footer links are plain arrays there. The markup above reads them through
 `{{ }}` placeholders, so you rarely need to touch the HTML to change wording.
 
+## The navigation menu
+
+Three nav items drop a submenu on hover: Research, People, and News & Life.
+Their links mirror the matching footer columns. About and Contact have no
+submenu because the footer's "Center" column holds top-level pages rather than
+children.
+
+The markup is written out in the `<nav>` in the header, one `.e3-navitem` per
+entry, so adding a link means adding an `<a>` inside that item's `.e3-submenu`.
+Styling lives in the `.e3-submenu` rules in the stylesheet. Submenus open on
+keyboard focus as well as hover.
+
+The nav is hidden below 900px wide. There is no mobile menu yet.
+
 ## Known gaps
 
 - Image slots in the research cards and news items are empty.
 - The fifth publication is a placeholder.
 - Nav and footer links all point at `#`.
+- No mobile navigation; the nav is hidden on narrow screens.

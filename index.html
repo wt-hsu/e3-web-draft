@@ -1130,18 +1130,56 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
 .e3-reveal .e3-desc{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease,margin .35s ease;margin-top:0}
 .e3-reveal:hover .e3-desc{max-height:160px;opacity:1;margin-top:8px}
 .e3-reveal:hover .e3-arrow{transform:translateX(4px)}
-@media (max-width:900px){.e3-grid2{grid-template-columns:1fr!important;gap:32px!important}.e3-grid3{grid-template-columns:1fr!important}.e3-pad{padding-left:24px!important;padding-right:24px!important}.e3-nav{display:none!important}.e3-h1{font-size:44px!important}.e3-cta{flex-direction:column;align-items:flex-start!important}}
+/* nav: hover submenus mirroring the footer columns */
+.e3-nav{align-items:stretch;align-self:stretch}
+.e3-navitem{position:relative;display:flex;align-items:center}
+.e3-navlink{display:inline-flex;align-items:center;gap:6px;color:#364553;height:100%}
+.e3-navitem:hover>.e3-navlink,.e3-navitem:focus-within>.e3-navlink{color:#204666}
+.e3-caret{width:0;height:0;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:4px solid currentColor;opacity:.55;transition:transform .18s ease}
+.e3-navitem:hover .e3-caret,.e3-navitem:focus-within .e3-caret{transform:rotate(180deg);opacity:1}
+.e3-submenu{
+  position:absolute;top:100%;left:-16px;z-index:30;min-width:196px;
+  display:flex;flex-direction:column;padding:6px 0;
+  background:#fff;border:1px solid #CFD6DD;border-top:2px solid #204666;border-radius:0 0 3px 3px;
+  box-shadow:0 6px 20px rgba(2,26,47,.10);
+  opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+}
+.e3-navitem:hover>.e3-submenu,.e3-navitem:focus-within>.e3-submenu{opacity:1;visibility:visible;transform:translateY(0)}
+.e3-submenu a{padding:9px 18px;font-size:15px;font-weight:400;color:#364553;white-space:nowrap}
+.e3-submenu a:hover,.e3-submenu a:focus-visible{background:#F3F5F6;color:#204666}
+@media (prefers-reduced-motion:reduce){.e3-submenu,.e3-caret{transition:none!important}}
+@media (max-width:900px){.e3-grid2{grid-template-columns:1fr!important;gap:32px!important}.e3-grid3{grid-template-columns:1fr!important}.e3-pad{padding-left:24px!important;padding-right:24px!important}.e3-nav{display:none!important}.e3-hero{height:560px!important}.e3-h1{font-size:44px!important}.e3-cta{flex-direction:column;align-items:flex-start!important}}
 </style>
 </helmet>
 <div style="width:100%;background:#fff">
 <header class="e3-pad" style="display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 48px;border-bottom:1px solid #CFD6DD;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);position:sticky;top:0;z-index:20">
 <img src="assets/img/e3-logo.svg" alt="E3 Center" style="height:36px">
 <nav class="e3-nav" style="display:flex;gap:32px;font-size:15px;font-weight:500;color:#364553">
-<a href="#" style="color:#364553">About</a><a href="#" style="color:#364553">Research</a><a href="#" style="color:#364553">People</a><a href="#" style="color:#364553">News &amp; Life</a><a href="#" style="color:#364553">Contact</a>
+<div class="e3-navitem"><a class="e3-navlink" href="#">About</a></div>
+<div class="e3-navitem">
+  <a class="e3-navlink" href="#" aria-haspopup="true">Research<span class="e3-caret" aria-hidden="true"></span></a>
+  <div class="e3-submenu">
+    <a href="#">Topics</a><a href="#">Publications</a><a href="#">Projects</a>
+  </div>
+</div>
+<div class="e3-navitem">
+  <a class="e3-navlink" href="#" aria-haspopup="true">People<span class="e3-caret" aria-hidden="true"></span></a>
+  <div class="e3-submenu">
+    <a href="#">Center Members</a><a href="#">E3 Research Group</a>
+  </div>
+</div>
+<div class="e3-navitem">
+  <a class="e3-navlink" href="#" aria-haspopup="true">News &amp; Life<span class="e3-caret" aria-hidden="true"></span></a>
+  <div class="e3-submenu">
+    <a href="#">News</a><a href="#">Group Life</a>
+  </div>
+</div>
+<div class="e3-navitem"><a class="e3-navlink" href="#">Contact</a></div>
 </nav>
 </header>
 
-<div style="position:relative;width:100%;height:680px;background:#021A2F;overflow:hidden">
+<div class="e3-hero" style="position:relative;width:100%;height:800px;background:#021A2F;overflow:hidden">
 <!-- HERO VIDEO -->
 <video class="e3-hero-video" autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center">
 <source src="assets/media/hero.webm" type="video/webm">
