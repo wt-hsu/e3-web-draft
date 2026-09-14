@@ -1153,6 +1153,7 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
      .e3-arrowlink  a text link that ends in an arrow
      .e3-reveal     a research card, description opening on hover
      .e3-footlink   a footer link, colour only
+     .e3-rise       rises into place the first time it is scrolled to
 ========================================================================== */
 :root{
   --e3-dur-tint:120ms;
@@ -1162,6 +1163,30 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
   --e3-lift:1px;
   --e3-float:3px;
   --e3-slide:4px;
+  --e3-dur-enter:560ms;
+  --e3-rise:16px;
+  --e3-stagger:70ms;
+}
+
+/* --- entrance: cards rise as they come into view ---
+   Hover motion is short because it answers something the reader just did.
+   An entrance is longer, because nobody asked for it and it should feel like
+   the page settling rather than a control reacting.
+
+   The hidden state is armed by .js, which the runtime adds once it has
+   rendered. Nothing is parked at opacity:0 in the markup itself, so the page
+   can never get stuck invisible if the observer fails to start.
+
+   Each element reveals once and is then unobserved; scrolling back up does
+   not replay it. Replaying on every pass turns a page into a slideshow. */
+.js .e3-rise{
+  opacity:0;transform:translateY(var(--e3-rise));
+  transition:opacity var(--e3-dur-enter) var(--e3-ease),
+             transform var(--e3-dur-enter) var(--e3-ease);
+}
+.js .e3-rise.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .e3-rise,.js .e3-rise.is-in{opacity:1;transform:none;transition:none}
 }
 
 /* --- buttons: tint, a 1px rise, and a press that returns it --- */
@@ -1341,7 +1366,7 @@ h2{color:#204666}
 </div>
 <div class="e3-grid3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
 <sc-for list="{{ areas }}" as="a" hint-placeholder-count="3">
-<a href="#" class="e3-reveal" style="position:relative;display:block;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:#0E304A;color:#fff">
+<a href="#" class="e3-reveal e3-rise" style="position:relative;display:block;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:#0E304A;color:#fff">
 <div style="position:absolute;inset:0"><image-slot id="{{ a.slotB }}" shape="rect" placeholder="{{ a.placeholder }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
 <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(2,26,47,.92) 0%,rgba(2,26,47,.55) 40%,rgba(2,26,47,0) 70%);pointer-events:none"></div>
 <div style="position:absolute;left:0;right:0;bottom:0;padding:28px;display:flex;flex-direction:column;pointer-events:none">
@@ -1380,7 +1405,7 @@ h2{color:#204666}
 <a href="#" class="e3-arrowlink" style="font-size:15px;font-weight:500">See all news <span class="e3-arrow" aria-hidden="true">→</span></a>
 </div>
 <div class="e3-grid2" style="display:grid;grid-template-columns:7fr 5fr;gap:32px">
-<a href="#" class="e3-rowlink" style="display:flex;flex-direction:column;gap:20px">
+<a href="#" class="e3-rowlink e3-rise" style="display:flex;flex-direction:column;gap:20px">
 <div class="e3-media" style="aspect-ratio:16/10;background:#E1EAF2;border-radius:4px;position:relative"><image-slot id="news-feat-1b" shape="rect" placeholder="Featured news photo" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
 <div>
 <div style="font-family:var(--e3-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#617282;margin-bottom:10px">Events · Jul. 2026</div>
@@ -1389,7 +1414,7 @@ h2{color:#204666}
 </a>
 <div style="display:flex;flex-direction:column;gap:32px">
 <sc-for list="{{ newsSmall }}" as="n" hint-placeholder-count="2">
-<a href="#" class="e3-rowlink" style="display:grid;grid-template-columns:160px 1fr;gap:20px;padding-bottom:32px;border-bottom:1px solid #CFD6DD">
+<a href="#" class="e3-rowlink e3-rise" style="display:grid;grid-template-columns:160px 1fr;gap:20px;padding-bottom:32px;border-bottom:1px solid #CFD6DD">
 <div class="e3-media" style="aspect-ratio:4/3;background:#E1EAF2;border-radius:4px;position:relative"><image-slot id="{{ n.slotB }}" shape="rect" placeholder="Photo" style="position:absolute;inset:0;width:100%;height:100%"></image-slot></div>
 <div>
 <div style="font-family:var(--e3-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#617282;margin-bottom:8px">{{ n.meta }}</div>
@@ -1412,7 +1437,7 @@ h2{color:#204666}
 </div>
 <div style="display:flex;flex-direction:column;border-top:2px solid #204666">
 <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="5">
-<a href="#" class="e3-rowlink" style="display:grid;grid-template-columns:72px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #CFD6DD;align-items:start">
+<a href="#" class="e3-rowlink e3-rise" style="display:grid;grid-template-columns:72px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #CFD6DD;align-items:start">
 <span style="font-family:var(--e3-mono);font-size:13.5px;color:#617282;font-variant-numeric:tabular-nums;padding-top:3px">{{ p.date }}</span>
 <span style="display:flex;flex-direction:column;gap:6px">
 <span class="e3-float" style="font-size:17px;line-height:1.45;font-weight:500">{{ p.title }}</span>
@@ -1482,8 +1507,45 @@ class Component extends DCLogic {
     r.setProperty('--e3-sans', f.sans); r.setProperty('--e3-head', f.head); r.setProperty('--e3-mono', f.mono);
   }
   componentDidUpdate() { this.applyFonts(); }
+  revealOnScroll() {
+    const root = document.documentElement;
+    const els = [...document.querySelectorAll('.e3-rise')];
+    if (!els.length) return;
+    // Arm the hidden state only now that the markup exists, so a failure
+    // earlier in the chain leaves the page readable rather than blank.
+    root.classList.add('js');
+    const show = el => el.classList.add('is-in');
+    if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+    // Stagger by position within the element's own group, so a row of three
+    // cards arrives in sequence while a separate list starts from zero again.
+    const step = parseFloat(getComputedStyle(root).getPropertyValue('--e3-stagger')) || 70;
+    for (const el of els) {
+      const group = [...el.parentElement.children].filter(c => c.classList.contains('e3-rise'));
+      const i = group.indexOf(el);
+      if (i > 0) el.style.transitionDelay = (i * step) + 'ms';
+    }
+    // The top margin runs far above the viewport on purpose. Without it, an
+    // element jumped past in one frame (an anchor link, End, a flick on a
+    // trackpad) never intersects and stays invisible for good. Extending the
+    // root upwards means anything at or above the trigger line counts as seen,
+    // so content can never be stranded behind the animation. The negative
+    // bottom margin sets the trigger line itself, a little above the fold.
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        show(e.target);
+        io.unobserve(e.target);          // reveal once, never replay
+      }
+    }, { threshold: 0, rootMargin: '99999px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+    this.io = io;
+  }
+
+  componentWillUnmount() { if (this.io) this.io.disconnect(); }
+
   componentDidMount() {
     this.applyFonts();
+    this.revealOnScroll();
     const vids = [...document.querySelectorAll('video')];
     vids.forEach(v => { v.muted = true; v.loop = true; });
     const lead = vids.find(v => !v.hasAttribute('data-e3-lazy'));

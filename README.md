@@ -120,6 +120,9 @@ commented block near the top of the stylesheet.
 | `--e3-lift` | 1px | how far a button rises |
 | `--e3-float` | 3px | how far a title lifts |
 | `--e3-slide` | 4px | how far an arrow travels |
+| `--e3-dur-enter` | 560ms | a card rising into view |
+| `--e3-rise` | 16px | how far it rises from |
+| `--e3-stagger` | 70ms | delay between siblings |
 
 The patterns, applied by class:
 
@@ -133,6 +136,7 @@ The patterns, applied by class:
 | `.e3-arrowlink` | A text link ending in an arrow; the arrow slides right. |
 | `.e3-reveal` | A research card; the description opens. |
 | `.e3-footlink` | Footer link, colour only. |
+| `.e3-rise` | Rises into place the first time it is scrolled to. |
 
 Three rules hold the standard together:
 
@@ -146,6 +150,30 @@ Three rules hold the standard together:
 
 To add a new hoverable thing, reach for the nearest class. If none fits, build
 it from the tokens rather than inventing a duration or a curve.
+
+### The scroll reveal
+
+`.e3-rise` is driven by an `IntersectionObserver` set up in `revealOnScroll()`,
+called from the component's `componentDidMount`. Three details in there are
+load-bearing:
+
+- **The hidden state is armed by a `js` class** the observer adds once the
+  markup exists. Nothing is `opacity: 0` in the markup itself, so the page can
+  never get stuck invisible if scripting or the runtime fails.
+- **The observer's `rootMargin` runs far above the viewport.** Without that, an
+  element jumped past in a single frame (an anchor link, the End key, a flick
+  on a trackpad) never intersects and stays invisible permanently. Extending
+  the root upwards means anything at or above the trigger line counts as seen.
+  The negative bottom margin is what actually sets the trigger line.
+- **Each element is unobserved once revealed,** so scrolling back up does not
+  replay it. Replaying on every pass turns a page into a slideshow.
+
+Stagger is applied as a `transition-delay` computed from the element's index
+among its own `.e3-rise` siblings, so a row of three cards arrives in sequence
+while a separate list starts counting from zero again.
+
+Under `prefers-reduced-motion` everything is visible immediately with no
+movement at all.
 
 The title lift uses `transform`, which does not reflow, so the row keeps its
 height and the text below it never moves. Only the title appears to float.
