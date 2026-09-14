@@ -19,13 +19,20 @@ needs byte-range support.
 ## Layout
 
 ```
-index.html            the whole page: styles, markup, and page data
-assets/img/           E3 and NTU logos (SVG)
+index.html            markup and page content
+assets/css/site.css   fonts and every style rule
+assets/img/           E3 and NTU logos (SVG); put photos here too
 assets/media/         hero video, WebM first then MP4 fallback
-assets/fonts/         self-hosted IBM Plex, Geist, Space Grotesk
+assets/fonts/         self-hosted IBM Plex Sans, Space Grotesk, Space Mono
 assets/vendor/        React and the canvas runtime, served locally
 dev-server.mjs        dev server with live reload
 ```
+
+Only three font families are bundled: IBM Plex Sans for body, Space Grotesk for
+headings, Space Mono for the small uppercase labels. The original draft carried
+nine, six of which nothing referenced. If you switch a family, add its woff2
+files to `assets/fonts/` and its `@font-face` blocks to the top of `site.css`,
+or the browser will fall back silently.
 
 ## Editing the hero video
 
