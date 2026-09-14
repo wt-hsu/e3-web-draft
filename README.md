@@ -63,6 +63,15 @@ keyboard focus as well as hover.
 
 The nav is hidden below 900px wide. There is no mobile menu yet.
 
+## Buttons and heading colour
+
+Both hero CTAs share one `.e3-btn` rule, so they cannot drift apart. The rule
+sets `box-sizing: border-box`; without it a bordered button renders 2px taller
+than an unbordered one, because the page has no global box-sizing reset.
+
+Section headings take their colour from a single `h2` rule in the stylesheet
+(blue-800, `#204666`). Change it there rather than per heading.
+
 ## Known gaps
 
 - Image slots in the research cards and news items are empty.

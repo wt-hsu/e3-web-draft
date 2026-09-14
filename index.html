@@ -1122,6 +1122,18 @@ window.__resources = {
 body{margin:0;background:#E5E9ED;font-family:var(--e3-sans);color:#0E1A24;text-wrap:pretty}
 a{color:#204666;text-decoration:none}a:hover{color:#37615E}
 h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
+/* hero CTAs: one style, identical box model. border-box so the 1px edge
+   does not make one button 2px taller than the other. */
+.e3-btn{
+  display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;
+  height:48px;padding:0 24px;border:1px solid #fff;border-radius:3px;
+  background:#fff;color:#021A2F;font-weight:600;font-size:15px;
+  transition:background .18s ease,border-color .18s ease;
+}
+.e3-btn:hover,.e3-btn:focus-visible{background:#E1EAF2;border-color:#E1EAF2;color:#021A2F}
+@media (prefers-reduced-motion:reduce){.e3-btn{transition:none}}
+/* section headings: blue-800, brighter than the near-black body colour */
+h2{color:#204666}
 @keyframes e3scroll{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media (prefers-reduced-motion:reduce){.e3-scrollline{animation:none!important;transform:none!important}}
 @keyframes e3blink{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
@@ -1193,8 +1205,8 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
 </div>
 <h1 class="e3-h1" style="font-size:72px;line-height:1.12;letter-spacing:-.02em;font-weight:600;max-width:1000px;color:#fff;margin:8px 0">Powering better decisions<br>for {{ rotator }}</h1>
 <div style="display:flex;gap:14px;flex-wrap:wrap">
-<a href="#" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;background:#fff;color:#021A2F;font-weight:600;font-size:15px;border-radius:3px;" style-hover="background:#E1EAF2;color:#021A2F">Explore Our Research</a>
-<a href="#" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border:1px solid #5F7F9B;color:#fff;font-weight:500;font-size:15px;border-radius:3px;" style-hover="border-color:#fff;background:rgba(255,255,255,.08);color:#fff">Meet The Team</a>
+<a href="#" class="e3-btn">Explore Our Research</a>
+<a href="#" class="e3-btn">Meet The Team</a>
 </div>
 </div>
 </section>
@@ -1297,7 +1309,7 @@ h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
 
 <section class="e3-pad" style="padding:96px 48px;background:#fff;border-top:1px solid #CFD6DD">
 <div class="e3-cta" style="max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:48px">
-<h2 style="font-size:44px;line-height:1.1;letter-spacing:-.022em;max-width:620px;color:#0E304A">Working on the energy transition? Let's collaborate.</h2>
+<h2 style="font-size:44px;line-height:1.1;letter-spacing:-.022em;max-width:620px">Working on the energy transition? Let's collaborate.</h2>
 <a href="#" style="flex:none;display:inline-flex;align-items:center;height:44px;padding:0 24px;background:#204666;color:#fff;font-weight:600;font-size:15px;border-radius:3px" style-hover="background:#0E304A;color:#fff">Contact the center</a>
 </div>
 </section>
