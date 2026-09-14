@@ -33,14 +33,15 @@ The hero is a wrapper div with a `<video>` inside it, near the top of `<body>`.
 
 | What to change | Where | Notes |
 | --- | --- | --- |
-| Hero height | `height:800px` on the `.e3-hero` wrapper | The video always fills the wrapper. Phones use 560px via the media query. |
-| How the video fills | `object-fit` on the video | `cover` crops to fill, `contain` letterboxes. |
-| Which part is kept | `object-position` on the video | `center`, `left top`, `center 30%`, and so on. |
-| Zoom or nudge | add `transform:scale(1.1)` to the video | Keep `object-fit:cover`. |
-| Overlay darkness | the `linear-gradient` on the `<section>` | Lower the alpha values to show more video. |
+| Hero height | `height:800px` on the `.e3-hero` wrapper | The video always fills the wrapper. Phones use 560px. |
+| Crop and horizontal framing | `width` in the `.e3-hero-video` rule | 100% means no crop. Higher crops more off the right and pushes the picture rightwards, away from the headline. Currently 118%. |
+| Vertical framing | `object-position` in the same rule | With the box wider than the hero, the crop is vertical, so only the second value does anything. |
+| How the video fills | `object-fit` in the same rule | `cover` crops to fill, `contain` letterboxes. |
+| Overlay darkness | the two gradients on the `<section>` | A radial scrim lights the copy, a linear one grounds the floor. Lower the alpha values to show more video. |
 
-The source video is 1280x720. At viewports wider than 1280px it is upscaled,
-so a 1920x1080 master would look sharper.
+The source video is 1280x720. The 118% crop means it is drawn about 1.33x its
+native width on a 1440px screen, so a 1920x1080 master would look noticeably
+sharper. Cropping harder costs more sharpness.
 
 ## Editing the content
 

@@ -1122,6 +1122,18 @@ window.__resources = {
 body{margin:0;background:#E5E9ED;font-family:var(--e3-sans);color:#0E1A24;text-wrap:pretty}
 a{color:#204666;text-decoration:none}a:hover{color:#37615E}
 h1,h2,h3{text-wrap:balance;font-weight:600;margin:0;font-family:var(--e3-head)}
+/* Hero video crop.
+   The clip is 16:9 and the hero is close to it, so at width:100% there is no
+   horizontal slack and object-position has nothing to slide. Making the video
+   box wider than the hero and anchoring it left crops the right-hand side off
+   screen and pushes the picture's centre rightwards, clear of the headline.
+     --hero-video-width : 100% = no crop. Higher = more crop, further right.
+   object-position now governs the VERTICAL crop only. */
+.e3-hero-video{
+  position:absolute;top:0;left:0;
+  width:var(--hero-video-width,118%);height:100%;
+  object-fit:cover;object-position:center;
+}
 /* hero CTAs: one style, identical box model. border-box so the 1px edge
    does not make one button 2px taller than the other. */
 .e3-btn{
@@ -1193,7 +1205,7 @@ h2{color:#204666}
 
 <div class="e3-hero" style="position:relative;width:100%;height:800px;background:#021A2F;overflow:hidden">
 <!-- HERO VIDEO -->
-<video class="e3-hero-video" autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center">
+<video class="e3-hero-video" autoplay muted loop playsinline preload="auto">
 <source src="assets/media/hero.webm" type="video/webm">
 <source src="assets/media/hero.mp4" type="video/mp4">
 </video>
